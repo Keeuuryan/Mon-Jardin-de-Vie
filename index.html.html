@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f8e9e8">
+<title>Mon Jardin de Vie</title>
+<style>
+:root{--bg:#fff8f4;--card:#fffdfb;--ink:#493c3c;--muted:#8d7c7a;--pink:#e8b6c5;--pink2:#f5dce3;--green:#789b79;--green2:#dce9d8;--blue:#76b8d3;--blue2:#dceff5;--gold:#e7b65e;--gold2:#faedcf;--line:#f0dfd9;--shadow:0 8px 24px #9b766b14}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#f8e9e8 0,#fff8f4 260px);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+.app{max-width:680px;margin:auto;padding:18px 15px 92px}.top{display:flex;justify-content:space-between;align-items:center;margin:6px 2px 18px}.eyebrow{font-size:11px;letter-spacing:1.7px;text-transform:uppercase;color:var(--muted)}h1{font-family:Georgia,serif;font-size:28px;font-weight:500;margin:5px 0}h2{font-family:Georgia,serif;font-size:20px;font-weight:500;margin:0 0 12px}h3{font-size:14px;margin:0 0 5px}.sub{font-size:13px;color:var(--muted);line-height:1.45}.avatar{height:43px;width:43px;border-radius:50%;background:#f2d5dc;display:grid;place-items:center;font-size:23px}
+.card{background:var(--card);border:1px solid #f2e3de;border-radius:22px;padding:16px;margin:12px 0;box-shadow:var(--shadow)}.hero{background:linear-gradient(145deg,#fffaf6,#f7e1e4);overflow:hidden}.garden{height:230px;border-radius:17px;position:relative;background:linear-gradient(#f8e9f0 0%,#fbeedb 60%,#c7d9b5 60%,#a6c18e 100%);overflow:hidden;margin:12px 0}.sun{position:absolute;right:34px;top:24px;width:42px;height:42px;background:#ffe6a2;border-radius:50%;box-shadow:0 0 0 12px #ffe6a233}.cloud{position:absolute;top:50px;left:20px;font-size:27px;opacity:.75}.ground{position:absolute;bottom:-35px;left:-10%;width:120%;height:85px;background:#789b79;border-radius:50% 50% 0 0}.tree{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);width:190px;height:180px;transition:all .5s}.trunk{position:absolute;bottom:0;left:88px;width:17px;height:95px;background:#9b6c4f;border-radius:12px;transform:rotate(-3deg)}.branch{position:absolute;bottom:64px;left:65px;width:70px;height:9px;background:#9b6c4f;border-radius:9px;transform:rotate(-35deg)}.branch.b2{left:95px;bottom:76px;transform:rotate(38deg)}.canopy{position:absolute;bottom:65px;left:18px;width:150px;height:105px;background:#83a979;border-radius:48% 52% 43% 57%;box-shadow:inset -10px -8px #6e966b;transition:all .5s}.canopy:before,.canopy:after{content:"";position:absolute;background:#91b783;border-radius:50%}.canopy:before{width:75px;height:72px;left:-10px;top:28px}.canopy:after{width:88px;height:78px;right:-7px;top:18px}.flower{position:absolute;z-index:3;font-size:20px;opacity:.9}.f1{left:32px;top:34px}.f2{right:24px;top:74px}.f3{left:20px;bottom:18px}.cat{position:absolute;right:18px;bottom:23px;font-size:36px;filter:drop-shadow(0 4px 2px #69534333)}.garden-caption{position:absolute;left:12px;bottom:12px;background:#fffaf0df;padding:8px 12px;border-radius:14px;font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{padding:12px 8px;border-radius:16px;background:#fff9f5;border:1px solid var(--line);text-align:center}.stat .emoji{font-size:21px}.stat strong{display:block;font-size:17px;margin:4px 0}.stat span{font-size:11px;color:var(--muted)}
+.progress-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;margin:12px 0 6px}.bar{height:8px;background:#f1e8e4;border-radius:9px;overflow:hidden}.fill{height:100%;border-radius:9px;transition:width .35s}.blue{background:var(--blue)}.green{background:var(--green)}.gold{background:var(--gold)}.pink{background:var(--pink)}
+.tabs{display:flex;gap:8px;overflow:auto;padding:3px 0 8px}.pill{border:0;border-radius:20px;padding:9px 13px;background:#f8e9e8;color:var(--ink);white-space:nowrap;font-size:12px}.pill.active{background:#715a60;color:white}
+.nav{position:fixed;bottom:0;left:0;right:0;padding:8px max(12px,env(safe-area-inset-right)) calc(8px + env(safe-area-inset-bottom));background:#fffaf4f2;backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:10}.navinner{width:min(680px,100%);display:flex;justify-content:space-around}.nav button{border:0;background:none;color:var(--muted);font-size:11px;padding:5px;display:grid;gap:3px;justify-items:center}.nav button b{font-size:20px;font-weight:400}.nav button.active{color:#a25f79}
+.page{display:none}.page.active{display:block}.task{display:flex;align-items:center;gap:10px;padding:12px 0;border-bottom:1px solid #f4e9e4}.task:last-child{border-bottom:0}.check{appearance:none;width:22px;height:22px;border:1.5px solid #d8c5c1;border-radius:8px;flex-shrink:0}.check:checked{background:#83a979;border-color:#83a979}.check:checked:after{content:"✓";display:block;color:white;text-align:center;font-size:15px}.tasktext{flex:1;font-size:13px}.task small{display:block;color:var(--muted);margin-top:3px;font-size:11px}.tag{font-size:10px;padding:5px 8px;border-radius:9px;background:var(--pink2)}.btn{border:0;border-radius:15px;background:#765d65;color:white;padding:12px 15px;font-size:13px;font-weight:600}.btn.secondary{background:#f7e6e9;color:#754f5d}.btnrow{display:flex;gap:8px;flex-wrap:wrap}.field{width:100%;padding:12px;border:1px solid var(--line);border-radius:13px;background:#fffaf7;font:inherit;font-size:13px;color:var(--ink);margin:5px 0 10px}.label{font-size:12px;color:var(--muted)}.quote{font-family:Georgia,serif;font-style:italic;font-size:15px;line-height:1.5;text-align:center;padding:10px 8px;color:#755b63}.domainhead{display:flex;gap:12px;align-items:center;margin-bottom:12px}.domainicon{width:45px;height:45px;border-radius:15px;display:grid;place-items:center;font-size:24px}.note{font-size:12px;line-height:1.5;background:#fff5f1;padding:12px;border-radius:14px;color:#7c6766}.empty{font-size:13px;color:var(--muted);padding:12px 0}.tiny{font-size:11px;color:var(--muted)}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin-top:22px}.sectionhead button{border:0;background:none;color:#9b6176;font-size:12px}
+@media(min-width:560px){.garden{height:280px}.tree{transform:translateX(-50%) scale(1.2);transform-origin:bottom}.app{padding-top:26px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top"><div><div class="eyebrow">Ton espace de croissance</div><h1>Mon Jardin de Vie 🌷</h1><div class="sub" id="dateLine">Un petit pas à la fois.</div></div><div class="avatar">🌸</div></header>
+
+<section id="home" class="page active">
+ <div class="card hero">
+  <div class="eyebrow">Bienvenue dans ton jardin</div>
+  <h2>Ce que tu cultives grandit. 🌱</h2>
+  <div class="sub">Prends soin de tes priorités, à ton rythme.</div>
+  <div class="garden" id="garden">
+   <div class="sun"></div><div class="cloud">☁️</div><div class="ground"></div>
+   <div class="tree" id="tree"><div class="trunk"></div><div class="branch"></div><div class="branch b2"></div><div class="canopy"></div></div>
+   <span class="flower f1">🌼</span><span class="flower f2">🌷</span><span class="flower f3">🌸</span><span class="cat">🐈</span>
+   <div class="garden-caption" id="gardenCaption">Ton jardin commence à fleurir</div>
+  </div>
+  <div class="progress-row"><strong>Ma progression globale</strong><strong id="overallText">0%</strong></div><div class="bar"><div id="overallBar" class="fill pink" style="width:0%"></div></div>
+  <div class="tiny" style="margin-top:8px">Tes progrès reflètent tes habitudes enregistrées, pas ta valeur ni la qualité de ta foi.</div>
+ </div>
+ <div class="stats">
+  <div class="stat"><div class="emoji">💧</div><strong id="spiritualPct">0%</strong><span>Spirituel</span></div>
+  <div class="stat"><div class="emoji">🌱</div><strong id="personalPct">0%</strong><span>Personnel</span></div>
+  <div class="stat"><div class="emoji">☀️</div><strong id="professionalPct">0%</strong><span>Professionnel</span></div>
+ </div>
+ <div class="card"><h2>Les ressources de ton jardin</h2>
+  <div class="progress-row"><span>💧 Eau · vie spirituelle</span><strong id="waterText">0%</strong></div><div class="bar"><div id="waterBar" class="fill blue" style="width:0%"></div></div>
+  <div class="progress-row"><span>🌿 Engrais · vie personnelle</span><strong id="fertilizerText">0%</strong></div><div class="bar"><div id="fertilizerBar" class="fill green" style="width:0%"></div></div>
+  <div class="progress-row"><span>☀️ Lumière · vie professionnelle</span><strong id="sunText">0%</strong></div><div class="bar"><div id="sunBar" class="fill gold" style="width:0%"></div></div>
+ </div>
+ <div class="card"><h2>Ta journée, sans pression 🤍</h2><div id="homeTasks"></div><div class="btnrow"><button class="btn" onclick="showPage('planning')">Voir mon planning</button><button class="btn secondary" onclick="showPage('goals')">Mes objectifs</button></div></div>
+ <div class="quote">« Tout ce que vous faites, faites-le avec amour. »<br><span class="tiny">1 Corinthiens 16:14</span></div>
+</section>
+
+<section id="planning" class="page">
+ <div class="eyebrow">Organise ton temps</div><h1>Mon planning 📅</h1><p class="sub">Prévois ta journée, puis adapte-la à la réalité.</p>
+ <div class="card"><h2>Ajouter une activité</h2><label class="label">Activité</label><input id="taskName" class="field" placeholder="Ex. : lecture biblique, piano…"><label class="label">Domaine</label><select id="taskDomain" class="field"><option value="spiritual">💧 Spirituel</option><option value="personal">🌱 Personnel</option><option value="professional">☀️ Professionnel</option></select><div style="display:flex;gap:10px"><div style="flex:1"><label class="label">Heure (facultatif)</label><input id="taskTime" class="field" type="time"></div><div style="flex:1"><label class="label">Durée (min)</label><input id="taskDuration" class="field" type="number" min="1" value="30"></div></div><button class="btn" onclick="addTask()">+ Ajouter à ma journée</button></div>
+ <div class="card"><div class="sectionhead" style="margin-top:0"><h2>Mes activités</h2><button onclick="resetChecks()">Réinitialiser les cases</button></div><div id="allTasks"></div></div>
+ <div class="note">Astuce : commence par une journée réaliste. Tu peux modifier les activités quand tes priorités ou ton emploi du temps changent.</div>
+</section>
+
+<section id="goals" class="page">
+ <div class="eyebrow">Avancer pas à pas</div><h1>Mes objectifs 🎯</h1><p class="sub">Choisis des objectifs concrets, puis célèbre chaque étape.</p>
+ <div class="card"><h2>Créer un objectif</h2><input id="goalName" class="field" placeholder="Ex. : pratiquer le piano 4 fois par semaine"><select id="goalDomain" class="field"><option value="spiritual">💧 Spirituel</option><option value="personal">🌱 Personnel</option><option value="professional">☀️ Professionnel</option></select><button class="btn" onclick="addGoal()">+ Ajouter un objectif</button></div>
+ <div class="card"><h2>En cours</h2><div id="goalList"></div></div>
+ <div class="card"><h2>Une règle importante</h2><div class="note">Un objectif est un repère, pas une mesure de ta valeur. Si tu rates une journée, tu peux simplement reprendre le lendemain.</div></div>
+</section>
+
+<section id="stats" class="page">
+ <div class="eyebrow">Observer sans se juger</div><h1>Ma progression 📈</h1><p class="sub">Une vue simple des activités que tu as enregistrées.</p>
+ <div class="card"><h2>Cette période</h2><div class="stats"><div class="stat"><div class="emoji">✨</div><strong id="doneCount">0</strong><span>Activités faites</span></div><div class="stat"><div class="emoji">⏳</div><strong id="minutesCount">0</strong><span>Minutes notées</span></div><div class="stat"><div class="emoji">🌳</div><strong id="levelCount">1</strong><span>Niveau du jardin</span></div></div></div>
+ <div class="card"><h2>Équilibre des domaines</h2><div id="statsDomains"></div></div>
+ <div class="card"><h2>Comment lire ces chiffres ?</h2><p class="sub">Les pourcentages sont calculés à partir des activités que tu as cochées par rapport à tes activités prévues. Ils servent à t'aider à ajuster ton organisation, pas à évaluer ta spiritualité ou ta valeur personnelle.</p></div>
+ <div class="btnrow"><button class="btn secondary" onclick="exportData()">Exporter mes données</button><button class="btn secondary" onclick="document.getElementById('importFile').click()">Importer une sauvegarde</button><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"></div>
+</section>
+
+<section id="journal" class="page">
+ <div class="eyebrow">Un espace pour déposer tes pensées</div><h1>Mon journal 📖</h1><p class="sub">Garde une trace de tes réflexions, de tes prières et de tes petits pas.</p>
+ <div class="card"><h2>Écrire une note</h2><select id="journalDomain" class="field"><option value="spiritual">💧 Spirituel</option><option value="personal">🌱 Personnel</option><option value="professional">☀️ Professionnel</option></select><textarea id="journalText" class="field" rows="5" placeholder="Qu'est-ce que tu veux retenir aujourd'hui ?"></textarea><button class="btn" onclick="addJournal()">Enregistrer ma note</button></div>
+ <div class="card"><h2>Mes notes</h2><div id="journalList"></div></div>
+ <div class="note">Tes notes sont enregistrées dans le stockage local de ce navigateur sur cet appareil. Exporte régulièrement une sauvegarde pour ne pas les perdre.</div>
+</section>
+</div>
+<nav class="nav"><div class="navinner">
+<button class="active" data-page="home" onclick="showPage('home')"><b>🏡</b>Accueil</button>
+<button data-page="planning" onclick="showPage('planning')"><b>🗓️</b>Planning</button>
+<button data-page="goals" onclick="showPage('goals')"><b>🎯</b>Objectifs</button>
+<button data-page="stats" onclick="showPage('stats')"><b>📊</b>Stats</button>
+<button data-page="journal" onclick="showPage('journal')"><b>📔</b>Journal</button>
+</div></nav>
+<script>
+const defaults=[
+{id:1,name:"Prière personnelle",domain:"spiritual",time:"07:00",duration:20,done:false},
+{id:2,name:"Lecture de la Bible",domain:"spiritual",time:"07:20",duration:20,done:false},
+{id:3,name:"Louange / adoration",domain:"spiritual",time:"",duration:15,done:false},
+{id:4,name:"Séance de sport",domain:"personal",time:"10:30",duration:75,done:false},
+{id:5,name:"Pratique du piano",domain:"personal",time:"16:00",duration:30,done:false},
+{id:6,name:"Pratique de la guitare",domain:"personal",time:"17:00",duration:30,done:false},
+{id:7,name:"Lecture d'un livre",domain:"personal",time:"20:00",duration:20,done:false},
+{id:8,name:"Recherche ou tâche professionnelle",domain:"professional",time:"09:00",duration:60,done:false}
+];
+const names={spiritual:"Spirituel",personal:"Personnel",professional:"Professionnel"};
+const icons={spiritual:"💧",personal:"🌱",professional:"☀️"};
+let data={tasks:defaults,goals:[],journal:[],nextId:9};
+try{const saved=localStorage.getItem("monJardinVie_v1");if(saved)data={...data,...JSON.parse(saved)}}catch(e){}
+function save(){try{localStorage.setItem("monJardinVie_v1",JSON.stringify(data))}catch(e){}}
+function showPage(id){document.querySelectorAll(".page").forEach(p=>p.classList.toggle("active",p.id===id));document.querySelectorAll(".nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===id));window.scrollTo({top:0,behavior:"smooth"});render()}
+function pct(domain){const t=data.tasks.filter(x=>x.domain===domain);return t.length?Math.round(t.filter(x=>x.done).length/t.length*100):0}
+function taskHTML(t){return `<div class="task"><input class="check" type="checkbox" ${t.done?"checked":""} onchange="toggleTask(${t.id},this.checked)"><div class="tasktext">${escapeHTML(t.name)}<small>${t.time?escapeHTML(t.time)+" · ":""}${t.duration} min · ${names[t.domain]}</small></div><button aria-label="Supprimer" onclick="deleteTask(${t.id})" style="border:0;background:none;color:#b48b91;font-size:18px">×</button></div>`}
+function renderTasks(){document.getElementById("allTasks").innerHTML=data.tasks.length?data.tasks.map(taskHTML).join(""):'<div class="empty">Aucune activité. Ajoute ton premier petit pas 🌱</div>';document.getElementById("homeTasks").innerHTML=data.tasks.slice(0,4).map(taskHTML).join("")||'<div class="empty">Ajoute une activité dans ton planning.</div>'}
+function renderGoals(){document.getElementById("goalList").innerHTML=data.goals.length?data.goals.map(g=>`<div class="task"><div class="tasktext">${icons[g.domain]} ${escapeHTML(g.name)}<small>${names[g.domain]}</small></div><button onclick="deleteGoal(${g.id})" style="border:0;background:none;color:#b48b91;font-size:18px">×</button></div>`).join(""):'<div class="empty">Tes objectifs apparaîtront ici. Choisis-en quelques-uns, à ton rythme.</div>'}
+function renderJournal(){document.getElementById("journalList").innerHTML=data.journal.length?[...data.journal].reverse().map(j=>`<div class="task"><div class="tasktext"><strong>${icons[j.domain]} ${escapeHTML(names[j.domain])}</strong><small>${escapeHTML(j.date)}</small><p style="white-space:pre-wrap;line-height:1.5">${escapeHTML(j.text)}</p></div><button onclick="deleteJournal(${j.id})" style="border:0;background:none;color:#b48b91;font-size:18px">×</button></div>`).join(""):'<div class="empty">Ton journal est encore vide. Tu peux commencer quand tu veux.</div>'}
+function render(){renderTasks();renderGoals();renderJournal();const p={spiritual:pct("spiritual"),personal:pct("personal"),professional:pct("professional")};const overall=Math.round((p.spiritual+p.personal+p.professional)/3);document.getElementById("overallText").textContent=overall+"%";document.getElementById("overallBar").style.width=overall+"%";for(const d of Object.keys(p)){document.getElementById(d+"Pct").textContent=p[d]+"%"}document.getElementById("waterText").textContent=p.spiritual+"%";document.getElementById("waterBar").style.width=p.spiritual+"%";document.getElementById("fertilizerText").textContent=p.personal+"%";document.getElementById("fertilizerBar").style.width=p.personal+"%";document.getElementById("sunText").textContent=p.professional+"%";document.getElementById("sunBar").style.width=p.professional+"%";const done=data.tasks.filter(t=>t.done).length;document.getElementById("doneCount").textContent=done;document.getElementById("minutesCount").textContent=data.tasks.filter(t=>t.done).reduce((s,t)=>s+Number(t.duration||0),0);const level=Math.min(6,1+Math.floor(done/3));document.getElementById("levelCount").textContent=level;const canopy=document.querySelector(".canopy");canopy.style.transform=`scale(${0.72+level*.055})`;canopy.style.background=level>=5?"#7f9e70":level>=3?"#88ad7c":"#9cbd8c";document.getElementById("gardenCaption").textContent=level>=6?"Ton jardin est en pleine floraison 🌸":level>=4?"Ton arbre prend de belles forces 🌳":level>=2?"De nouvelles feuilles apparaissent 🌿":"Chaque grand arbre commence petit 🌱";document.getElementById("statsDomains").innerHTML=Object.keys(p).map(d=>`<div class="progress-row"><span>${icons[d]} ${names[d]}</span><strong>${p[d]}%</strong></div><div class="bar"><div class="fill ${d==="spiritual"?"blue":d==="personal"?"green":"gold"}" style="width:${p[d]}%"></div></div>`).join("");save()}
+function toggleTask(id,done){const t=data.tasks.find(t=>t.id===id);if(t)t.done=done;render()}
+function addTask(){const name=document.getElementById("taskName").value.trim();if(!name){alert("Ajoute un nom d’activité 🙂");return}data.tasks.push({id:data.nextId++,name,domain:document.getElementById("taskDomain").value,time:document.getElementById("taskTime").value,duration:Math.max(1,Number(document.getElementById("taskDuration").value)||30),done:false});document.getElementById("taskName").value="";render();showPage("planning")}
+function deleteTask(id){data.tasks=data.tasks.filter(t=>t.id!==id);render()}
+function resetChecks(){if(confirm("Réinitialiser toutes les cases cochées ?")){data.tasks.forEach(t=>t.done=false);render()}}
+function addGoal(){const name=document.getElementById("goalName").value.trim();if(!name){alert("Écris ton objectif 🙂");return}data.goals.push({id:data.nextId++,name,domain:document.getElementById("goalDomain").value});document.getElementById("goalName").value="";render()}
+function deleteGoal(id){data.goals=data.goals.filter(g=>g.id!==id);render()}
+function addJournal(){const text=document.getElementById("journalText").value.trim();if(!text){alert("Écris quelques mots avant d’enregistrer 🙂");return}data.journal.push({id:data.nextId++,text,domain:document.getElementById("journalDomain").value,date:new Date().toLocaleString("fr-FR")});document.getElementById("journalText").value="";render()}
+function deleteJournal(id){data.journal=data.journal.filter(j=>j.id!==id);render()}
+function escapeHTML(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function exportData(){const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="sauvegarde-mon-jardin.json";a.click();URL.revokeObjectURL(url)}
+function importData(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const v=JSON.parse(r.result);if(v.tasks&&v.goals&&v.journal){data=v;save();render();alert("Sauvegarde importée 🌷")}else throw Error()}catch(err){alert("Ce fichier ne semble pas être une sauvegarde compatible.")}};r.readAsText(f)}
+const now=new Date();document.getElementById("dateLine").textContent=now.toLocaleDateString("fr-FR",{weekday:"long",day:"numeric",month:"long"})+" · Un petit pas à la fois.";render();
+</script>
+</body>
+</html>
